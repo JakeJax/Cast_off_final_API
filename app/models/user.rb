@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {maximum: 30}
   validates :email, presence: true, length: {maximum: 30}
   validates :password, presence: true, length: {minimum: 6}
+
+  has_secure_password
   
   attr_accessor :password_confirmation
   

@@ -39,13 +39,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if !is_admin?
-      @user = current_user
-      @user.destroy
-      username = @user.firstname
-      session[:user_id] = nil
-      redirect_to movies_path, notice: "Adios!"
-    end
+    @user = current_user
+    @user.destroy
+    username = @user.firstname
+    session[:user_id] = nil
+    redirect_to movies_path, notice: "Adios!"
   end
 
   protected
