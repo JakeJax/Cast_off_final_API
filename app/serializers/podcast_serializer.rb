@@ -1,7 +1,7 @@
 class PodcastSerializer < ActiveModel::Serializer
   root false
   
-  attributes :id, :title, :like_count, :url
+  attributes :id, :playlist_id, :title, :like_count, :url
 
   def like_count
     like_num = object.likes.size

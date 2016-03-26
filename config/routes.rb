@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :moods
   resources :users
   resources :sessions
+  resources :playlists
 
 end

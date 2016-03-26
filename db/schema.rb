@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323175832) do
+ActiveRecord::Schema.define(version: 20160323182710) do
 
   create_table "clicks", force: :cascade do |t|
     t.integer  "user_id"
@@ -61,8 +61,11 @@ ActiveRecord::Schema.define(version: 20160323175832) do
   add_index "podcasts", ["playlist_id"], name: "index_podcasts_on_playlist_id"
 
   create_table "sessions", force: :cascade do |t|
-    t.string "authentication_token"
+    t.string  "authentication_token"
+    t.integer "user_id"
   end
+
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

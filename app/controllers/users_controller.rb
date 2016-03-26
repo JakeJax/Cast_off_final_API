@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_info
+    @user = User.find(params[:id])
+    render json: @user
+  end
+
 
 
 #    @user = User.find(params[:id])

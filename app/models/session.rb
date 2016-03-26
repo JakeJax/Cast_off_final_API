@@ -1,13 +1,13 @@
 class Session < ActiveRecord::Base
   belongs_to :user
 
-  validates :token, presence: true,
+  validates :authentication_token, presence: true,
                     uniqueness: true
 
   before_validation :generate_token
 
   def self.authenticate(token)
-    if session = find_by(token: token)
+    if session = find_by(authentication_token: token)
       session.user
     else
       nil
@@ -17,7 +17,7 @@ class Session < ActiveRecord::Base
   private
 
   def generate_token
-    self.token = SecureRandom.urlsafe_base64
+    self.authentication_token = SecureRandom.urlsafe_base64
   end
-  
+
 end
