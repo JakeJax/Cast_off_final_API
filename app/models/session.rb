@@ -1,4 +1,4 @@
-class Click < ActiveRecord::Base
+class Session < ActiveRecord::Base
   belongs_to :user
 
   validates :token, presence: true,
