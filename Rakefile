@@ -14,7 +14,7 @@ Rake::Task['db:seed'].clear
 
 desc "drop the database"
 task "db:drop" do
-  rm_f 'db/db.sqlite3'
+  rm_f 'db/development.sqlite3'
 end
 
 desc 'Retrieves the current schema version number'
@@ -25,8 +25,8 @@ end
 
 desc "reset the database"
 task "db:reset" do
-  rm_f 'db/db.sqlite3'
-  touch 'db/db.sqlite3'
+  rm_f 'db/development.sqlite3'
+  touch 'db/development.sqlite3'
 end
 
 desc "seed the database"

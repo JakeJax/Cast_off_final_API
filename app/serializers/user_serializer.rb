@@ -1,7 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
   root false
   
-  attributes :id, :name, :email
+  attributes :id, :name, :email, :token, :image
+
+  def token
+    object.session.authentication_token
+  end
 
   def like_count
     like_num = object.likes.size
@@ -11,6 +15,7 @@ class UserSerializer < ActiveModel::Serializer
       "#{like_num} likes"
     end
   end
+
 
   # def duration
   #   if object.length <= 2

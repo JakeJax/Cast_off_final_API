@@ -1,33 +1,38 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+
+  # skip_before_action :verify_authenticity_token
+  before_action :restrict_access
 
   protected
 
   def restrict_access
-    if !current_user
-      flash[:alert] = "You must log in."
-      redirect_to new_session_path
+    unless current_user
+      render json: "Access Denied", status: 401
     end
   end
 
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    token = request.headers["HTTP_AUTHORIZATION"]
+    session = Session.find_by(authentication_token: token)
+    @current_user ||= session.user if session
   end
 
-  def is_admin?
-    if current_user
-      (@current_user.admin?.nil? || @current_user.admin? == false) ? false : true
-    end
-  end
+  # def is_admin?
+  #   if current_user
+  #     (@current_user.admin?.nil? || @current_user.admin? == false) ? false : true
+  #   end
+  # end
 
 
 
-  def current_admin
-    @current_admin ||= User.find(session[:admin_id]) if session[:admin_id]
-  end
+  # def current_admin
+  #   @current_admin ||= User.find(session[:admin_id]) if session[:admin_id]
+  # end
 
   def is_switched?
     session[:can_switch] == false

@@ -1,10 +1,15 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate_token, only: [:create]
+  skip_before_action :restrict_access, only: [:create]
+
 
   def create
-    if login(params[:email], params[:password])
-      session = current_user.create_session
-      render json: session
+    @user = User.find_by(name: params[:name])
+    if @user && @user.authenticate(params[:password]) &&
+      @user.generate_token
+      render json: @user
+    # if login(params[:name], params[:password])
+    #   session = current_user.create_session
+    #   render json: session
     else
       render json: { errors: ["Invalid credentials"] }, status: :forbidden
     end
@@ -14,6 +19,11 @@ class SessionsController < ApplicationController
     current_user.destroy_session
     logout
     render_nothing
+  end
+
+  def login(name, password)
+    @user = User.find_by(name: name)
+    
   end
 
 end

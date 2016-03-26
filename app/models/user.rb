@@ -17,4 +17,13 @@ class User < ActiveRecord::Base
       errors.add(:password, ": Your passwords do not match")
     end
   end
+
+  def generate_token
+    if self.session
+      self.session.update authentication_token: SecureRandom.urlsafe_base64  
+    else
+      self.session = Session.new(authentication_token: SecureRandom.urlsafe_base64)
+    end
+  end
+
 end
