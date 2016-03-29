@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   delete "sessions", to: "sessions#destroy"
   get "user", to: "users#show"
+  delete "likes", to: "likes#destroy"
 
 
 end
