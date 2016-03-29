@@ -16,10 +16,16 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    current_user.destroy_session
-    logout
-    render_nothing
+    token = request.headers["HTTP_AUTHORIZATION"]
+    session = Session.find_by(current_user.id)
+    session.destroy
+    head :ok, content_type: "text/html"
   end
+
+    # current_user.destroy_session
+    # logout
+    # render_nothing
+  # end
 
   def login(name, password)
     @user = User.find_by(name: name)

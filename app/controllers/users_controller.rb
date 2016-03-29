@@ -33,6 +33,11 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  # def index
+  #   @user = User.find_by(current_user.id)
+  #   render json: @user
+  # end
+
 
 
 #    @user = User.find(params[:id])
@@ -41,6 +46,10 @@ class UsersController < ApplicationController
 
 
   def show
+    token = request.headers["HTTP_AUTHORIZATION"]
+    session = Session.find_by(authentication_token: token)
+    @user = session.user
+    render json: @user
   end
 
   def destroy
