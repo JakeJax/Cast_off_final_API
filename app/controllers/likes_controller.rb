@@ -8,8 +8,8 @@ class LikesController < ApplicationController
     #user id and podcast id
       @likes = @podcasts.select do |podcast|
         Like.find_by(podcast_id: podcast.id, user_id: current_user.id)
-      render json: @likes, root: false
       end
+      render json: @likes, root: false
     else
       @podcasts = Podcast.all
       @likes = @podcasts.select do |podcast| 
