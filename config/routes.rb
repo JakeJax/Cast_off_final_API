@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resource :user
   resources :sessions
   resources :playlists
+  resources :likes
 
   delete "sessions", to: "sessions#destroy"
   get "user", to: "users#show"
+
 
 end

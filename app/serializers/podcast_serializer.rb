@@ -12,12 +12,4 @@ class PodcastSerializer < ActiveModel::Serializer
     end
   end
 
-  # def duration
-  #   if object.length <= 2
-  #     'short'
-  #   else
-  #     'long'
-  #   end
-  # end
-
 end
