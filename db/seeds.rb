@@ -20,6 +20,20 @@
 #   #image: "/images/brandon.png"
 # )
 
+Jake = User.create(
+  name: "Jake",
+  email: "jake@test.com",
+  password: "1234567",
+  image: "/src/public/images/jake.jpg"
+)
+
+Djina = User.create(
+  name: "Djina",
+  email: "djina@test.com",
+  password: "1234567",
+  image: "/src/public/images/djina.jpg"
+)
+
 
 #########################################
 comedy = Mood.create(
