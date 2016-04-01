@@ -38,21 +38,21 @@ Djina = User.create(
 #########################################
 comedy = Mood.create(
   title: 'Comedy',
-  image: "/images/comedy.png"
+  image: "/src/public/images/comedy.png"
 )
 
 educational = Mood.create(
   title: 'Educational',
-  image: "/images/gradhat.png")
+  image: "/src/public/images/gradhat.png")
 
 drama = Mood.create(
   title: 'Drama',
-  image: "/images/drama.png"
+  image: "/src/public/images/drama.png"
 )
 
 pop_culture = Mood.create(
   title: 'Pop Culture',
-  image: "/images/popcultn.png")
+  image: "/src/public/images/popcultn.png")
 
 
 #########################################
